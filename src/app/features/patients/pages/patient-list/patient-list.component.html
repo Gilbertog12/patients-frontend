@@ -1,0 +1,83 @@
+<div class="container-fluid p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <button pButton label="Crear Paciente" icon="pi pi-plus" (click)="goToNew()"></button>
+  </div>
+
+
+  <!-- flitrado -->
+  <!-- Inicio filtro para nombre -->
+  <div class="row mb-3">
+    <div class="col-md-4">
+      <span class="p-input-icon-left w-100">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" placeholder="Buscar por nombre" [(ngModel)]="filterName" class="w-100">
+      </span>
+    </div>
+    <!-- FIn filtro para nombre -->
+
+    <!-- Inicio filtro para Docuemnto -->
+    <div class="col-md-4">
+      <span class="p-input-icon-left w-100">
+        <i class="pi pi-id-card"></i>
+        <input pInputText type="text" placeholder="Numero de Documento" class="w-100" [(ngModel)]="filterDocument">
+      </span>
+    </div>
+    <!-- Fin filtro para Docuemnto -->
+
+    <!--Inicio boton de busqueda -->
+
+    <div class="col-md-4 d-flex gap-4">
+      <button (click)="applyFilters()" pButton label="Buscar" icon="pi pi-search"></button>
+      <button (click)="clearFilters()" class="p-button-secondary" label="Limpiar" pButton icon="pi pi-times"></button>
+    </div>
+
+
+</div>
+
+<!-- motrar pacientes -->
+
+<p-table [value]="patients" [loading]="loading" [lazy]="true" [totalRecords]="totalRecords" [rows]="pageSize" [paginator]="true"
+(onLazyLoad)="onPageChange($event)" responsiveLayout="scroll">
+
+<ng-template pTemplate="header">
+  <tr>
+    <th>Documento</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Fecha de Nacimiento</th>
+    <th>Teléfono</th>
+    <th>Email</th>
+    <th>Acciones</th>
+  </tr>
+</ng-template>
+
+<ng-template pTemplate="body" let-patient>
+  <tr>
+    <td>{{patient.documentType}} {{patient.documentNumber}}</td>
+    <td>{{patient.firstName}}</td>
+    <td>{{patient.lastName}}</td>
+    <td>{{patient.birthDate | date: 'dd/MM/yyyy'}} </td>
+    <td>{{patient.phoneNumber || '-'}}</td>
+    <td>{{patient.email || '-'}}</td>
+    <td >
+      <button pButton icon="pi pi-eye" class="p-button-info p-button-sm mr-1" pTooltip="Ver Paciente" (click)="goToDetail(patient.patientId)"></button>
+      <button pButton icon="pi pi-pencil" class="p-button-warning p-button-sm mr-1" pTooltip="Editar Paciente" (click)="goToEdit(patient.patientId)"></button>
+      <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm mr-1" pTooltip="Eliminar Paciente" (click)="confirmDelete(patient)"></button>
+    </td>
+  </tr>
+</ng-template>
+<!-- fin mostrar paciente -->
+
+<!-- mensaje de vacio -->
+<ng-template pTemplate="emptymessage">
+  <tr>
+    <td colspan="7" class="text-center">No se encontraron Pacientes</td>
+  </tr>
+</ng-template>
+
+
+</p-table>
+</div>
+
+<p-confirmDialog/>
+<p-toast/>

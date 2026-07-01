@@ -1,0 +1,53 @@
+<div class="container p-4" style="max-width: 700px;">
+  <h2>Detalle Paciente</h2>
+  <div class="d-flex gap-2">
+    <button pButton label="Volver" icon="pi pi-arrow-left" class="p-button-secondary" (click)="goBack()"></button>
+    <button pButton label="Editar" icon="pi pi-pencil" class="p-button-warning" (click)="goToEdit()"></button>
+  </div>
+</div>
+
+<div *ngIf="loading" class="text-center p-4">
+  <i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
+</div>
+
+<div *ngIf="patient && !loading">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="" class="fw-bold">Tipo de Documento</label>
+      <p>{{patient.documentType}}</p>
+    </div>
+    <div class="col-md-6">
+      <label for="" class="fw-bold">Numero de Documento</label>
+      <p>{{patient.documentNumber}}</p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="" class="fw-bold">Nombre</label>
+      <p>{{patient.firstName}}</p>
+    </div>
+    <div class="col-md-6">
+      <label for="" class="fw-bold">Apellido</label>
+      <p>{{patient.lastName}}</p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="" class="fw-bold">Fecha de Nacimiento</label>
+      <p>{{patient.birthDate |date:'dd/MM/yyyy'}}</p>
+    </div>
+    <div class="col-md-6">
+      <label for="" class="fw-bold">Telefono</label>
+      <p>{{patient.phoneNumber || 'no registra'}}</p>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <label for="" class="fw-bold">Email</label>
+      <p>{{patient.email  || 'no Registra'}}</p>
+    </div>
+  </div>
+</div>

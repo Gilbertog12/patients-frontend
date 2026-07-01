@@ -1,0 +1,95 @@
+<div class="container p-4" style="max-width: 700px;">
+
+  <h2 class="mb-4">{{ isEditMode ? 'Editar Paciente' : 'Nuevo Paciente' }}</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <!-- Tipo y número de documento -->
+    <div class="row mb-3">
+      <div class="col-md-5">
+        <label class="form-label">Tipo de Documento *</label>
+        <p-dropdown formControlName="documentType" [options]="documentTypes"
+          optionLabel="label" optionValue="value"
+          placeholder="Seleccione" styleClass="w-100">
+        </p-dropdown>
+        <small class="text-danger" *ngIf="isInvalid('documentType')">
+          Campo requerido
+        </small>
+      </div>
+
+      <div class="col-md-7">
+        <label class="form-label">Número de Documento *</label>
+        <input pInputText formControlName="documentNumber" class="w-100"
+          placeholder="Ej: 1234567890" />
+        <small class="text-danger" *ngIf="isInvalid('documentNumber')">
+          Requerido, entre 5 y 10 dígitos
+        </small>
+      </div>
+    </div>
+
+    <!-- Nombre y apellido -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Nombre *</label>
+        <input pInputText formControlName="firstName" class="w-100"
+          placeholder="Nombre" />
+        <small class="text-danger" *ngIf="isInvalid('firstName')">
+          Campo requerido
+        </small>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Apellido *</label>
+        <input pInputText formControlName="lastName" class="w-100"
+          placeholder="Apellido" />
+        <small class="text-danger" *ngIf="isInvalid('lastName')">
+          Campo requerido
+        </small>
+      </div>
+    </div>
+
+    <!-- Fecha de nacimiento -->
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label class="form-label">Fecha de Nacimiento *</label>
+        <p-calendar formControlName="birthDate" dateFormat="dd/mm/yy"
+          [showIcon]="true" styleClass="w-100" [maxDate]="today">
+        </p-calendar>
+        <small class="text-danger" *ngIf="isInvalid('birthDate')">
+          Campo requerido
+        </small>
+      </div>
+
+      <div class="col-md-6">
+        <label class="form-label">Teléfono</label>
+        <input pInputText formControlName="phoneNumber" class="w-100"
+          placeholder="Ej: 3001234567" />
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="row mb-4">
+      <div class="col-md-12">
+        <label class="form-label">Email</label>
+        <input pInputText formControlName="email" class="w-100"
+          placeholder="correo@ejemplo.com" type="email" />
+        <small class="text-danger" *ngIf="isInvalid('email')">
+          Email inválido
+        </small>
+      </div>
+    </div>
+
+    <!-- Botones -->
+    <div class="d-flex gap-2">
+      <button pButton type="submit" [label]="isEditMode ? 'Actualizar' : 'Guardar'"
+        icon="pi pi-save" [loading]="loading">
+      </button>
+      <button pButton type="button" label="Cancelar" icon="pi pi-times"
+        class="p-button-secondary" (click)="cancel()">
+      </button>
+    </div>
+
+  </form>
+
+</div>
+<p-toast></p-toast>

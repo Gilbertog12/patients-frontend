@@ -47,6 +47,7 @@
     <th>Fecha de Nacimiento</th>
     <th>Teléfono</th>
     <th>Email</th>
+    <th>Fecha Creacion</th>
     <th>Acciones</th>
   </tr>
 </ng-template>
@@ -59,6 +60,7 @@
     <td>{{patient.birthDate | date: 'dd/MM/yyyy'}} </td>
     <td>{{patient.phoneNumber || '-'}}</td>
     <td>{{patient.email || '-'}}</td>
+    <td>{{patient.createdAt | date: 'dd/MM/yyyy'}}</td>
     <td >
       <button pButton icon="pi pi-eye" class="p-button-info p-button-sm mr-1" pTooltip="Ver Paciente" (click)="goToDetail(patient.patientId)"></button>
       <button pButton icon="pi pi-pencil" class="p-button-warning p-button-sm mr-1" pTooltip="Editar Paciente" (click)="goToEdit(patient.patientId)"></button>

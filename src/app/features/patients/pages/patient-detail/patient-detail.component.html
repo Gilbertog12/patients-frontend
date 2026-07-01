@@ -1,60 +1,69 @@
-<div class="container p-4" style="max-width: 700px;">
-  <h2>Detalle Paciente</h2>
-  <div class="d-flex gap-2">
-    <button pButton label="Volver" icon="pi pi-arrow-left" class="p-button-secondary" (click)="goBack()"></button>
-    <button pButton label="Editar" icon="pi pi-pencil" class="p-button-warning" (click)="goToEdit()"></button>
-  </div>
-</div>
+<div class="container p-4 detail-container">
 
-<div *ngIf="loading" class="text-center p-4">
-  <i class="pi pi-spin pi-spinner" style="font-size: 2rem;"></i>
-</div>
-
-<div *ngIf="patient && !loading">
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <label for="" class="fw-bold">Tipo de Documento</label>
-      <p>{{patient.documentType}}</p>
-    </div>
-    <div class="col-md-6">
-      <label for="" class="fw-bold">Numero de Documento</label>
-      <p>{{patient.documentNumber}}</p>
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0 fw-semibold">Detalle Paciente</h2>
+    <div class="d-flex gap-2">
+      <p-button label="Volver" icon="pi pi-arrow-left" styleClass="p-button-secondary p-button-sm" (click)="goBack()"></p-button>
+      <p-button label="Editar" icon="pi pi-pencil" styleClass="p-button-warning p-button-sm" (click)="goToEdit()"></p-button>
     </div>
   </div>
 
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <label for="" class="fw-bold">Nombre</label>
-      <p>{{patient.firstName}}</p>
-    </div>
-    <div class="col-md-6">
-      <label for="" class="fw-bold">Apellido</label>
-      <p>{{patient.lastName}}</p>
-    </div>
+  <div *ngIf="loading" class="text-center p-5">
+    <i class="pi pi-spin pi-spinner text-primary spinner-icon" ></i>
   </div>
 
-  <div class="row mb-3">
-    <div class="col-md-6">
-      <label for="" class="fw-bold">Fecha de Nacimiento</label>
-      <p>{{patient.birthDate |date:'dd/MM/yyyy'}}</p>
-    </div>
-    <div class="col-md-6">
-      <label for="" class="fw-bold">Telefono</label>
-      <p>{{patient.phoneNumber || 'no registra'}}</p>
-    </div>
-  </div>
+  <div *ngIf="patient && !loading" class="card shadow-sm p-4">
 
-  <div class="row mb-3">
-    <div class="col-md-12">
-      <label for="" class="fw-bold">Email</label>
-      <p>{{patient.email  || 'no Registra'}}</p>
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="fw-bold text-muted small d-block mb-1">Tipo de Documento</label>
+        <p class="mb-0 text-dark">{{patient.documentType}}</p>
+      </div>
+      <div class="col-md-6">
+        <label class="fw-bold text-muted small d-block mb-1">Número de Documento</label>
+        <p class="mb-0 text-dark">{{patient.documentNumber}}</p>
+      </div>
     </div>
-  </div>
-</div>
 
-<div class="row mt-4">
-  <div class="col-md-12">
-    <h5>Citas Asociadas</h5>
-    <p class="text-muted">Sin citas Registradas</p>
+    <p-divider styleClass="my-4"></p-divider>
+
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <label class="fw-bold text-muted small d-block mb-1">Nombre</label>
+        <p class="mb-0 text-dark">{{patient.firstName}}</p>
+      </div>
+      <div class="col-md-6">
+        <label class="fw-bold text-muted small d-block mb-1">Apellido</label>
+        <p class="mb-0 text-dark">{{patient.lastName}}</p>
+      </div>
+    </div>
+
+    <div class="row g-3 mb-3">
+      <div class="col-md-6">
+        <label class="fw-bold text-muted small d-block mb-1">Fecha de Nacimiento</label>
+        <p class="mb-0 text-dark">{{patient.birthDate | date:'dd/MM/yyyy'}}</p>
+      </div>
+      <div class="col-md-6">
+        <label class="fw-bold text-muted small d-block mb-1">Teléfono</label>
+        <p class="mb-0 text-dark">{{patient.phoneNumber || 'No registra'}}</p>
+      </div>
+    </div>
+
+    <div class="row g-3">
+      <div class="col-md-12">
+        <label class="fw-bold text-muted small d-block mb-1">Email</label>
+        <p class="mb-0 text-dark">{{patient.email || 'No registra'}}</p>
+      </div>
+    </div>
+
+    <p-divider styleClass="my-4"></p-divider>
+
+    <h5 class="text-muted mb-3 fw-bold small text-uppercase section-title" >Citas Asociadas</h5>
+
+    <div class="text-center py-3 bg-light rounded-2 text-muted small">
+      <i class="pi pi-calendar mb-2 d-block calendar-icon" ></i>
+      Sin citas registradas actualmente.
+    </div>
+
   </div>
 </div>

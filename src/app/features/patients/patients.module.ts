@@ -17,6 +17,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ConfirmationService } from 'primeng/api';
 import { TooltipModule } from "primeng/tooltip";
+import { DividerModule } from 'primeng/divider';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { TooltipModule } from "primeng/tooltip";
     DropdownModule,
     FormsModule,
     TooltipModule,
+    DividerModule
 
 ] ,
 
